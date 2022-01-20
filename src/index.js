@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import 'styles/fonts.css';
+import { Provider } from 'react-redux';
+import { store } from 'app/store';
+import { debounce } from 'debounce';
+import { storeInLocalStorage } from 'helpers/index';
+
+store.subscribe(
+  debounce(() => {
+    storeInLocalStorage('comments', store.getState().comment);
+    console.log('Comments saved in Local storage');
+  }, 1000)
+);
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 

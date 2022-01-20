@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
+import GlobalStyles from './styles/GlobalStyles';
+import CommentsList from 'components/CommentsList/CommentsList';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  margin: 50px;
+  @media (max-width: 600px) {
+    margin: 15px;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Wrapper>
+        <CommentsList />
+      </Wrapper>
+    </ThemeProvider>
   );
 }
 
