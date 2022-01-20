@@ -18,7 +18,7 @@ const CommentsList = ({ depthLevel = 0, parentCommentId = null }) => {
 
   return (
     <Wrapper depthLevel={depthLevel}>
-      {depthLevel === 0 ? <CommentInput isVisible={true} /> : null}
+      {depthLevel === 0 ? <CommentInput /> : null}
       <TransitionGroup>
         {commentsIds.map((commentId) => (
           <CSSTransition key={commentId} timeout={400} classNames="comment">

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 
-const CommentInput = ({ isVisible = false, commentId = null, handleCloseInput = () => {} }) => {
+const CommentInput = ({ isVisible = true, commentId = null, handleCloseInput = () => {} }) => {
   const [textareaValue, setTextareaValue] = useState();
   const textareaRef = useRef();
   const dispatch = useDispatch();
