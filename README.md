@@ -18,8 +18,7 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
+![layout](https://user-images.githubusercontent.com/72691985/150648783-531cbb53-a264-470f-886e-989d65eb9346.PNG)
 
 ### Links
 
@@ -37,7 +36,7 @@ Users should be able to:
 - [React](https://reactjs.org/) - JS library
 - [Styled Components](https://styled-components.com/) - For styles
 - [React Transition Group](https://reactcommunity.org/react-transition-group/) - For animation
-- [https://storybook.js.org/](https://storybook.js.org/) - For components docs
+- [Storybook](https://storybook.js.org/) - For components docs
 
 ## Author
 
