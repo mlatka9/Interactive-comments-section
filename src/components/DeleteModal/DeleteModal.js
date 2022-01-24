@@ -1,10 +1,21 @@
 import { Backdrop, Wrapper } from './DeleteModal.styles';
 import reactDom from 'react-dom';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 
-const rootModal = document.querySelector('#root-modal');
+const modalRoot = document.createElement('div');
+modalRoot.setAttribute('id', 'modal-root');
+document.body.appendChild(modalRoot);
 
 const DeleteModal = ({ handleDeleteComment, handleCloseModal }) => {
+  const el = document.createElement('div');
+
+  useEffect(() => {
+    modalRoot.appendChild(el);
+
+    return () => modalRoot.removeChild(el);
+  });
+
   return reactDom.createPortal(
     <>
       <Wrapper>
@@ -17,7 +28,7 @@ const DeleteModal = ({ handleDeleteComment, handleCloseModal }) => {
       </Wrapper>
       <Backdrop onClick={handleCloseModal} />
     </>,
-    rootModal
+    el
   );
 };
 

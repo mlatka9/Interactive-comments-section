@@ -26,7 +26,7 @@ import { remove } from 'features/comment/commentSlice';
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo('en-US');
 
-const CommentCard = ({ commentId: id, toggleIsReplying }) => {
+const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
   const dispatch = useDispatch();
   const comment = useSelector((state) => state.comment.find((comment) => comment.id === id));
   const {
@@ -107,7 +107,7 @@ const CommentCard = ({ commentId: id, toggleIsReplying }) => {
           <button onClick={handleIncrementScore}>
             <PlusIcon />
           </button>
-          <span>{score}</span>
+          <span data-testid={`score-counter-${id}`}>{score}</span>
           <button onClick={handleDecrementScore}>
             <MinusIcon />
           </button>
@@ -155,7 +155,7 @@ const CommentCard = ({ commentId: id, toggleIsReplying }) => {
 
 CommentCard.propTypes = {
   commentId: PropTypes.string.isRequired,
-  toggleIsReplying: PropTypes.func.isRequired,
+  toggleIsReplying: PropTypes.func,
 };
 
 export default CommentCard;

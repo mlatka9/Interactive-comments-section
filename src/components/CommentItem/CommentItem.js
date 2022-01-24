@@ -13,7 +13,7 @@ const CommentItem = React.memo(({ commentId }) => {
   };
 
   return (
-    <Wrapper>
+    <Wrapper data-testid={`comment-item-${commentId}`}>
       <CommentCard commentId={commentId} toggleIsReplying={toggleIsReplying} />
       <CommentInput isVisible={isReplying} commentId={commentId} handleCloseInput={toggleIsReplying} />
     </Wrapper>

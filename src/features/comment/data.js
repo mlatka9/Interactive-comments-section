@@ -63,4 +63,19 @@ export const comments = [
     },
     parentId: '2',
   },
+  {
+    id: '5',
+    content:
+      "Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
+    createdAt: 1642190363682,
+    score: 12,
+    user: {
+      image: {
+        png: './images/avatars/image-amyrobson.png',
+        webp: './images/avatars/image-amyrobson.webp',
+      },
+      username: 'juliusomo',
+    },
+    parentId: null,
+  },
 ];
