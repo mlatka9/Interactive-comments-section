@@ -2,23 +2,45 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import GlobalStyles from './styles/GlobalStyles';
 import CommentsList from 'components/CommentsList/CommentsList';
-import styled from 'styled-components';
-
-const Wrapper = styled.div`
-  margin: 50px;
-  @media (max-width: 600px) {
-    margin: 15px;
-  }
-`;
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import LoginPage from 'views/LoginPage/LoginPage';
+import SignUpPage from 'views/SignUpPage/SignUpPage';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from 'features/user/userSlice';
 
 function App() {
+  const currentUser = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(logout());
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Wrapper>
-        <CommentsList />
-      </Wrapper>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <nav>
+          {currentUser ? (
+            <>
+              <Link to="/">Comments </Link>
+              <span>logged: {currentUser.username}</span>
+              <button onClick={handleLogOut}>logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/signUp">Sign Up </Link>
+              <Link to="/login">login</Link>
+            </>
+          )}
+        </nav>
+        <Routes>
+          <Route path="/" element={<CommentsList />} />
+          <Route path="/signUp" element={<SignUpPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 

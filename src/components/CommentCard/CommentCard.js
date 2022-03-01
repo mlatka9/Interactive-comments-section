@@ -13,35 +13,28 @@ import {
   Wrapper,
   StyledTextarea,
   Tag,
+  CardStyledButton,
 } from './CommentCard.styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
 import DeleteModal from 'components/DeleteModal/DeleteModal';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
-import { decrementScore, incrementScore, updateContent } from 'features/comment/commentSlice';
+import { updateComment, deleteComment } from 'features/comment/commentSlice';
 import PropTypes from 'prop-types';
-import { remove } from 'features/comment/commentSlice';
 
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo('en-US');
 
 const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
+  // console.log(`card  ${id} is render `)
   const dispatch = useDispatch();
   const comment = useSelector((state) => state.comment.find((comment) => comment.id === id));
-  const {
-    content,
-    createdAt,
-    score,
-    parentId,
-    user: {
-      username,
-      image: { webp },
-    },
-  } = comment || { user: { image: { webp: '' } } }; //Fallback to fix error caused by removing component during exit aniamtion
+
+  const { content, createdAt, score, parent, user } = comment || {};
 
   const parentCommentUsername = useSelector(
-    (state) => state.comment.find((comment) => comment.id === parentId)?.user.username
+    (state) => state.comment.find((comment) => comment.id === parent)?.user.username
   );
 
   const [isEditing, setIsEditing] = useState(false);
@@ -49,7 +42,7 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
   const textareaRef = useRef();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const currentUser = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.user) || {};
 
   useEffect(() => {
     if (textareaRef.current) {
@@ -66,38 +59,34 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
     textareaRef.current.style.height = `${e.target.scrollHeight}px`;
   };
 
-  const handleToggleIsEditing = () => {
-    if (isEditing) {
-      setIsEditing(false);
-      if (textareaValue === content) return;
-      dispatch(
-        updateContent({
-          id,
-          content: textareaValue,
-        })
-      );
-    } else {
-      setIsEditing(true);
+  const handleToggleIsEditing = () => setIsEditing(!isEditing);
+
+  const handleEditComment = () => {
+    setIsEditing(false);
+    if (textareaValue !== content) {
+      dispatch(updateComment(id, { content: textareaValue }));
     }
   };
 
+  // dispatch(updateComment(id, { content: textareaValue }));
+
   const handleIncrementScore = () => {
-    dispatch(incrementScore({ id }));
+    dispatch(updateComment(id, { score: score + 1 }));
   };
 
   const handleDecrementScore = () => {
-    dispatch(decrementScore({ id }));
+    dispatch(updateComment(id, { score: score + 1 }));
   };
 
   const handleDeleteComment = () => {
-    dispatch(remove(id));
+    dispatch(deleteComment(id));
     handleCloseModal();
   };
 
   //To fix error caused by removing component during exit animation
   let formattedTimestamp = null;
   try {
-    formattedTimestamp = timeAgo.format(createdAt);
+    formattedTimestamp = timeAgo.format(Date.parse(createdAt));
   } catch (e) {}
 
   return (
@@ -113,13 +102,13 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
           </button>
         </ScoreCounter>
         <CommentHeader>
-          <img src={webp} alt={username} />
-          <h3>{username}</h3>
-          {currentUser.username === username ? <Tag>You</Tag> : null}
+          <img src={user?.image} alt={user?.username} />
+          <h3>{user?.username}</h3>
+          {currentUser.username === user?.username ? <Tag>You</Tag> : null}
           <span>{formattedTimestamp}</span>
         </CommentHeader>
         <ButtonsWrapper>
-          {currentUser.username === username ? (
+          {currentUser.username === user?.username ? (
             <>
               <DeleteButton onClick={() => setIsModalOpen(true)}>
                 <DeleteIcon />
@@ -138,7 +127,10 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
           )}
         </ButtonsWrapper>
         {isEditing ? (
-          <StyledTextarea ref={textareaRef} value={textareaValue} onChange={handleOnChange}></StyledTextarea>
+          <>
+            <StyledTextarea ref={textareaRef} value={textareaValue} onChange={handleOnChange}></StyledTextarea>
+            <CardStyledButton onClick={handleEditComment}>update</CardStyledButton>
+          </>
         ) : (
           <CommentContent>
             {parentCommentUsername ? <Mention>{`@${parentCommentUsername}`}</Mention> : null}

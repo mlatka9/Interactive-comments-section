@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import GlobalStyledButton from 'components/Button/Button';
 
 export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
@@ -201,4 +202,9 @@ export const StyledTextarea = styled.textarea`
   &:focus {
     outline: 2px solid ${({ theme }) => theme.colors.moderateBlue};
   }
+`;
+
+export const CardStyledButton = styled(GlobalStyledButton)`
+  justify-self: flex-end;
+  grid-column: 2 / 3;
 `;

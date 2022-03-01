@@ -5,15 +5,9 @@ import reportWebVitals from './reportWebVitals';
 import 'styles/fonts.css';
 import { Provider } from 'react-redux';
 import { store } from 'app/store';
-import { debounce } from 'debounce';
-import { storeInLocalStorage } from 'helpers/index';
+import {setInitialComments} from './features/comment/commentSlice';
 
-store.subscribe(
-  debounce(() => {
-    storeInLocalStorage('comments', store.getState().comment);
-    console.log('Comments saved in Local storage');
-  }, 1000)
-);
+store.dispatch(setInitialComments());
 
 ReactDOM.render(
   <Provider store={store}>

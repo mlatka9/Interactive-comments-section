@@ -9,8 +9,8 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 const CommentsList = ({ depthLevel = 0, parentCommentId = null }) => {
   const commentsIds = useSelector((state) =>
     state.comment
-      .filter((comment) => comment.parentId === parentCommentId)
-      .sort((a, b) => b.createdAt - a.createdAt)
+      .filter((comment) => comment.parent === parentCommentId)
+      .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
       .map((comment) => comment.id)
   );
 
@@ -18,7 +18,7 @@ const CommentsList = ({ depthLevel = 0, parentCommentId = null }) => {
 
   return (
     <Wrapper depthLevel={depthLevel}>
-      {depthLevel === 0 ? <CommentInput /> : null}
+      {/* {depthLevel === 0 ? <CommentInput /> : null} */}
       <TransitionGroup>
         {commentsIds.map((commentId) => (
           <CSSTransition key={commentId} timeout={400} classNames="comment">
