@@ -5,13 +5,14 @@ const user = JSON.parse(localStorage.getItem('interactiveCommentsUser'));
 
 export const login = (username, login) => {
   return async (dispatch) => {
-    const response = await authService.login(username, login);
-    const user = {
-      token: response.token,
-      username: response.user.username,
-      id: response.user.id,
+    const { user, token } = await authService.login(username, login);
+    const currentUser = {
+      token,
+      username: user.username,
+      id: user.id,
+      image: user.image,
     };
-    localStorage.setItem('interactiveCommentsUser', JSON.stringify(user));
+    localStorage.setItem('interactiveCommentsUser', JSON.stringify(currentUser));
     dispatch(setUser(user));
   };
 };

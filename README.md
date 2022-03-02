@@ -1,3 +1,15 @@
+//todo 
+- login and register page layout
+- redirecty po zalogowaniu / zareestrowaniu
+- obsługa wyświetlania wiadomości z backaenda (nowy slice)
+- refractor backendu
+- przepisanie testów na frocie
+- stworzenie testów na backendzie
+- dodanie eslinta
+- naprawa story booka
+- dodanie poprawnej osbłigi błędów z validatora
+- dodanie validacji na froncie
+
 # Frontend Mentor - Interactive comments section solution
 
 This is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 

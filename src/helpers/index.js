@@ -1,6 +1,6 @@
 export const getFromLocalStorage = (key) => {
   const stored = localStorage.getItem(key);
-  return !stored ? undefined : JSON.parse(stored);
+  return stored ? JSON.parse(stored) : undefined;
 };
 
 export const storeInLocalStorage = (key, value) => {

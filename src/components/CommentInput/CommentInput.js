@@ -13,6 +13,8 @@ const CommentInput = ({ isVisible = true, commentId = null, handleCloseInput = (
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user) || {};
 
+  // console.log(user)
+
   const handleOnChange = (e) => {
     setTextareaValue(e.target.value);
     if (!textareaRef.current) return;

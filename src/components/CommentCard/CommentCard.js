@@ -83,6 +83,29 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
     handleCloseModal();
   };
 
+  const getButtons = () => {
+    if (Object.keys(currentUser).length === 0) return null;
+    if (currentUser.username === user?.username)
+      return (
+        <>
+          <DeleteButton onClick={() => setIsModalOpen(true)}>
+            <DeleteIcon />
+            <span>delete</span>
+          </DeleteButton>
+          <ReplyButton onClick={handleToggleIsEditing}>
+            <ReplyIcon />
+            <span>edit</span>
+          </ReplyButton>
+        </>
+      );
+    return (
+      <ReplyButton onClick={toggleIsReplying}>
+        <ReplyIcon />
+        <span>replay</span>
+      </ReplyButton>
+    );
+  };
+
   //To fix error caused by removing component during exit animation
   let formattedTimestamp = null;
   try {
@@ -107,25 +130,7 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
           {currentUser.username === user?.username ? <Tag>You</Tag> : null}
           <span>{formattedTimestamp}</span>
         </CommentHeader>
-        <ButtonsWrapper>
-          {currentUser.username === user?.username ? (
-            <>
-              <DeleteButton onClick={() => setIsModalOpen(true)}>
-                <DeleteIcon />
-                <span>delete</span>
-              </DeleteButton>
-              <ReplyButton onClick={handleToggleIsEditing}>
-                <ReplyIcon />
-                <span>edit</span>
-              </ReplyButton>
-            </>
-          ) : (
-            <ReplyButton onClick={toggleIsReplying}>
-              <ReplyIcon />
-              <span>replay</span>
-            </ReplyButton>
-          )}
-        </ButtonsWrapper>
+        <ButtonsWrapper>{getButtons()}</ButtonsWrapper>
         {isEditing ? (
           <>
             <StyledTextarea ref={textareaRef} value={textareaValue} onChange={handleOnChange}></StyledTextarea>

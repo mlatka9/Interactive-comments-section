@@ -9,7 +9,6 @@ export const Wrapper = styled.div`
   gap: 20px;
   padding: 25px;
   border-radius: 8px;
-  /* z-index: 100; */
   position: relative;
   z-index: 100;
   @media (max-width: 800px) {
