@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const CommentItem = React.memo(({ commentId }) => {
-  console.log(`item  ${commentId} is render `)
+  // console.log(`item  ${commentId} is render `)
   const [isReplying, setIsReplying] = useState(false);
 
   const toggleIsReplying = () => {

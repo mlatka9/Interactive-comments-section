@@ -6,6 +6,8 @@ import LoginPage from 'views/LoginPage/LoginPage';
 import SignUpPage from 'views/SignUpPage/SignUpPage';
 import CommentsPage from 'views/CommentsPage/CommentsPage';
 import Navigation from 'components/Navigation/Navigation';
+import Notifications from 'components/Notifications/Notifications';
+import styled from 'styled-components';
 
 function App() {
   return (
@@ -13,11 +15,14 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <Navigation />
-        <Routes>
-          <Route path="/" element={<CommentsPage />} />
-          <Route path="/signUp" element={<SignUpPage />} />
-          <Route path="/login" element={<LoginPage />} />
-        </Routes>
+        
+          <Routes>
+            <Route path="/" element={<CommentsPage />} />
+            <Route path="/signUp" element={<SignUpPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+          <Notifications />
+    
       </ThemeProvider>
     </BrowserRouter>
   );

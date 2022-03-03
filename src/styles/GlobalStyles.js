@@ -4,16 +4,19 @@ const GlobalStyles = createGlobalStyle`
     *,*::after, *::before {
         box-sizing: border-box;
     }
+    html{
+        overflow-x: hidden;
+    }
 
     body{
         margin: 0;
         font-family: 'Rubik', sans-serif;
         background-color: ${({ theme }) => theme.colors.veryLightGray};
     }
+
     button, input, textarea {
         font-family: inherit;
     }
-
 `;
 
 export default GlobalStyles;

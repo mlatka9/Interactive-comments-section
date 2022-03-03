@@ -24,7 +24,7 @@ export const logout = () => {
   };
 };
 
-export const userSlice = createSlice({
+const userSlice = createSlice({
   name: 'user',
   initialState: user,
   reducers: {

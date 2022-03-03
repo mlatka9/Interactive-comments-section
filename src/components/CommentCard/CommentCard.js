@@ -22,6 +22,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import { updateComment, deleteComment } from 'features/comment/commentSlice';
 import PropTypes from 'prop-types';
+import {createNotification} from '../../features/notification/notificationSlice'
 
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo('en-US');
@@ -61,10 +62,11 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
 
   const handleToggleIsEditing = () => setIsEditing(!isEditing);
 
-  const handleEditComment = () => {
+  const handleEditComment = async () => {
     setIsEditing(false);
     if (textareaValue !== content) {
-      dispatch(updateComment(id, { content: textareaValue }));
+      await dispatch(updateComment(id, { content: textareaValue }));
+      dispatch(createNotification({ title: 'Commned updated' }));
     }
   };
 

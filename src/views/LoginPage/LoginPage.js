@@ -5,21 +5,32 @@ import { useDispatch } from 'react-redux';
 import { login } from '../../features/user/userSlice';
 
 const Wrapper = styled.div``;
+const ErrorMessage = styled.p`
+  color: red;
+`;
 
 const LoginPage = () => {
   const dispatch = useDispatch();
   const [loginValue, setLoginValue] = useState('');
   const [passwordValue, setPasswordValue] = useState('');
+  const [error, setError] = useState();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login(loginValue, passwordValue));
+
+    try {
+      await dispatch(login(loginValue, passwordValue));
+    } catch (err) {
+      console.log('SPADŁ :D');
+      setError(err.response.data);
+    }
   };
 
   return (
     <Wrapper>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
+        {error ? <ErrorMessage>{error.message}</ErrorMessage> : null}
         <label htmlFor="login">Login: </label>
         <input
           id="login"

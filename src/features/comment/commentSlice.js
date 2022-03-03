@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 import CommentsService from '../../service/comments';
+import { createNotification } from 'features/notification/notificationSlice';
 
 // const getInitialComments = () => {
 //   const storedComments = getFromLocalStorage('comments');
@@ -18,29 +19,30 @@ export const createNewNote = (comment) => {
   return async (dispatch) => {
     const createdComment = await CommentsService.addComment(comment);
     dispatch(addComment(createdComment));
+    await dispatch(createNotification({ title: 'New comment created' }));
   };
 };
 
 export const updateComment = (id, body) => {
   return async (dispatch) => {
     const updatedComment = await CommentsService.updateComment(id, body);
-    dispatch(update(updatedComment));
+    await dispatch(update(updatedComment));
   };
 };
 
 export const deleteComment = (id) => {
   return async (dispatch) => {
     const updatedComment = await CommentsService.deleteComment(id);
-
     if (updatedComment) {
       dispatch(update(updatedComment));
     } else {
       dispatch(remove(id));
     }
+    await dispatch(createNotification({ title: 'Commned removed', type: 'error' }));
   };
 };
 
-export const commentSlice = createSlice({
+const commentSlice = createSlice({
   name: 'comment',
   initialState: [],
   reducers: {
