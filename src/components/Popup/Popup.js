@@ -5,7 +5,7 @@ import { ReactComponent as SuccessIcon } from '../../assets/images/icons/success
 const Popup = ({ title, type }) => {
   const getIcon = (type) => {
     if (type === 'error') return <ErrorIcon />;
-    if (type === 'success') return <SuccessIcon />;
+    else return <SuccessIcon />;
   };
 
   return (

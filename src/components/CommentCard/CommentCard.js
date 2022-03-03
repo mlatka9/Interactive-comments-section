@@ -65,15 +65,20 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
   const handleEditComment = async () => {
     setIsEditing(false);
     if (textareaValue !== content) {
-      await dispatch(updateComment(id, { content: textareaValue }));
+      dispatch(updateComment(id, { content: textareaValue }));
       dispatch(createNotification({ title: 'Commned updated' }));
     }
   };
 
   // dispatch(updateComment(id, { content: textareaValue }));
 
-  const handleIncrementScore = () => {
-    dispatch(updateComment(id, { score: score + 1 }));
+  const handleIncrementScore = async () => {
+    try{
+      await dispatch(updateComment(id, { score: score + 1 }));
+    } catch(err){
+      dispatch(createNotification({ title: 'You must be logged in to like other posts', type: "error"}));
+    }
+    
   };
 
   const handleDecrementScore = () => {

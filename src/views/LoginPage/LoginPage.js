@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { login } from '../../features/user/userSlice';
+import { createNotification } from 'features/notification/notificationSlice';
 
 const Wrapper = styled.div``;
 const ErrorMessage = styled.p`
@@ -20,8 +21,8 @@ const LoginPage = () => {
 
     try {
       await dispatch(login(loginValue, passwordValue));
+      dispatch(createNotification({title: 'logged in successfuly'}))
     } catch (err) {
-      console.log('SPADŁ :D');
       setError(err.response.data);
     }
   };

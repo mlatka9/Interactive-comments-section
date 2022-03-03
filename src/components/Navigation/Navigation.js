@@ -10,9 +10,9 @@ const Navigation = () => {
   };
   return (
     <nav>
+      <Link to="/">Comments </Link>
       {currentUser ? (
         <>
-          <Link to="/">Comments </Link>
           <span>logged: {currentUser.username}</span>
           <button onClick={handleLogOut}>logout</button>
         </>

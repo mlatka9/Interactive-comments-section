@@ -38,7 +38,7 @@ export const deleteComment = (id) => {
     } else {
       dispatch(remove(id));
     }
-    await dispatch(createNotification({ title: 'Commned removed', type: 'error' }));
+    await dispatch(createNotification({ title: 'Commned removed' }));
   };
 };
 
@@ -81,23 +81,6 @@ const commentSlice = createSlice({
         });
       }
     },
-    // remove: (state, action) => {
-    //   const commenthasReply = state.some((comment) => comment.parentId === action.payload);
-    //   if (commenthasReply) {
-    //     const commentToRemove = state.find((comment) => comment.id === action.payload);
-    //     if (!commentToRemove) return;
-    //     commentToRemove.content = 'comment removed';
-    //     commentToRemove.user = {
-    //       image: {
-    //         png: './images/avatars/image-placeholder.png',
-    //         webp: './images/avatars/image-placeholder.webp',
-    //       },
-    //       username: 'nickname',
-    //     };
-    //   } else {
-    //     return state.filter((comment) => comment.id !== action.payload);
-    //   }
-    // },
     incrementScore: (state, action) => {
       const commentToUpdate = state.find((comment) => comment.id === action.payload.id);
       commentToUpdate.score++;

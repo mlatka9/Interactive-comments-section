@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
   padding: 15px 20px;
   box-shadow: 0px 5px 20px ${({ theme }) => theme.colors.darkShadow};
   width: 400px;
-  position: absolute;
+  position: fixed;
   right: -400px;
   top: 20px;
   border-left: 8px solid
@@ -42,6 +42,7 @@ export const Wrapper = styled.div`
     color: ${({ theme }) => theme.colors.grayishBlue};
     font-weight: normal;
     font-size: 18px;
+    max-width: 200px;
   }
 
   path {

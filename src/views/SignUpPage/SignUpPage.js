@@ -18,20 +18,21 @@ const SignUpPage = () => {
 
   console.log('SignUpPage renders');
 
-  const handleAddNotification = () => {
-    const dummyNotification = {
-      Title: 'title',
-      subTitle: 'subTitle',
-      type: 'success',
-    };
-    dispatch(createNotification(dummyNotification));
-  };
+  // const handleAddNotification = () => {
+  //   const dummyNotification = {
+  //     Title: 'title',
+  //     subTitle: 'subTitle',
+  //     type: 'success',
+  //   };
+  //   dispatch(createNotification(dummyNotification));
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       await authService.register(loginValue, passwordValue);
+      dispatch(createNotification({title: 'Account created'}));
     } catch (err) {
       setError(err.response.data);
     }
@@ -39,7 +40,7 @@ const SignUpPage = () => {
 
   return (
     <Wrapper>
-      <button onClick={handleAddNotification}> distapch notif</button>
+      {/* <button onClick={handleAddNotification}> distapch notif</button> */}
       <h1>Sign Up</h1>
 
       <form onSubmit={handleSubmit}>
