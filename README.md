@@ -1,14 +1,14 @@
 //todo 
 - login and register page layout
 - redirecty po zalogowaniu / zareestrowaniu
-- obsługa wyświetlania wiadomości z backaenda (nowy slice)
+- obsługa wyświetlania wiadomości z backaenda (nowy slice) +
 - refractor backendu
 - przepisanie testów na frocie
 - stworzenie testów na backendzie
 - dodanie eslinta
 - naprawa story booka
-- dodanie poprawnej osbłigi błędów z validatora
-- dodanie validacji na froncie
+- dodanie poprawnej osbłigi błędów z validatora +
+- dodanie validacji na froncie +-
 
 # Frontend Mentor - Interactive comments section solution
 

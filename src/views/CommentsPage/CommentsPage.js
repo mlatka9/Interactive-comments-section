@@ -3,18 +3,13 @@ import CommentInput from 'components/CommentInput/CommentInput';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
-const Wrapper = styled.div`
-  max-width: 750px;
-  margin: 0 auto;
-  padding: 0;
-`;
 const CommentsPage = () => {
   const user = useSelector(state=>state.user);
   return (
-    <Wrapper>
+    <div>
       {user ? <CommentInput /> : null}
       <CommentsList />
-    </Wrapper>
+    </div>
   );
 };
 

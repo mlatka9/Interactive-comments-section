@@ -22,7 +22,7 @@ export const Wrapper = styled.div`
   width: 400px;
   position: fixed;
   right: -400px;
-  top: 20px;
+  bottom: 30px;
   border-left: 8px solid
     ${({ theme, type }) => {
       if (type === 'error') return theme.colors.softRed;

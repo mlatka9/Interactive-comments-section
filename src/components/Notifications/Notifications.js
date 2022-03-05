@@ -3,7 +3,6 @@ import Popup from 'components/Popup/Popup';
 
 const Notifications = () => {
   const notifications = useSelector((state) => state.notification);
-  console.log(notifications);
 
   if (notifications.length === 0) return null;
 

@@ -9,20 +9,27 @@ import Navigation from 'components/Navigation/Navigation';
 import Notifications from 'components/Notifications/Notifications';
 import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  max-width: 750px;
+  margin: 0 auto;
+  padding: 0;
+`;
+
 function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-        <Navigation />
-        
+       
+          <Wrapper>
+          <Navigation />
           <Routes>
             <Route path="/" element={<CommentsPage />} />
             <Route path="/signUp" element={<SignUpPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
           <Notifications />
-    
+          </Wrapper>
       </ThemeProvider>
     </BrowserRouter>
   );

@@ -12,6 +12,7 @@ const StyledButton = styled.button`
   cursor: pointer;
   align-self: flex-start;
   background-color: ${({ theme }) => theme.colors.moderateBlue};
+  transition: background-color 100ms ease-in-out;
   &:hover {
     background-color: ${({ theme }) => theme.colors.lightGrayishBlue};
   }

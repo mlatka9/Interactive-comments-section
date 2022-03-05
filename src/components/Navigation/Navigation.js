@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from 'features/user/userSlice';
+import { LoginBox, StyledLink, StyledNav, EmphasisedStyledButton } from './Navigation.styles';
+
 const Navigation = () => {
   const currentUser = useSelector((state) => state.user);
   const dispatch = useDispatch();
@@ -9,20 +11,22 @@ const Navigation = () => {
     dispatch(logout());
   };
   return (
-    <nav>
-      <Link to="/">Comments </Link>
+    <StyledNav>
+      <StyledLink to="/">Comments </StyledLink>
       {currentUser ? (
         <>
-          <span>logged: {currentUser.username}</span>
-          <button onClick={handleLogOut}>logout</button>
+          <span>Logged as:</span> {currentUser.username}
+          <EmphasisedStyledButton onClick={handleLogOut}>logout</EmphasisedStyledButton>
         </>
       ) : (
-        <>
-          <Link to="/signUp">Sign Up </Link>
-          <Link to="/login">login</Link>
-        </>
+        <LoginBox>
+          <StyledLink to="/signUp">Sign Up </StyledLink>
+          <EmphasisedStyledButton as={Link} to="/login">
+            login
+          </EmphasisedStyledButton>
+        </LoginBox>
       )}
-    </nav>
+    </StyledNav>
   );
 };
 

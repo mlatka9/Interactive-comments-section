@@ -22,7 +22,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import { updateComment, deleteComment } from 'features/comment/commentSlice';
 import PropTypes from 'prop-types';
-import {createNotification} from '../../features/notification/notificationSlice'
+import { createNotification } from '../../features/notification/notificationSlice';
 
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo('en-US');
@@ -70,19 +70,20 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
     }
   };
 
-  // dispatch(updateComment(id, { content: textareaValue }));
-
   const handleIncrementScore = async () => {
-    try{
+    try {
       await dispatch(updateComment(id, { score: score + 1 }));
-    } catch(err){
-      dispatch(createNotification({ title: 'You must be logged in to like other posts', type: "error"}));
+    } catch (err) {
+      dispatch(createNotification({ title: 'You must be logged in to like other posts', type: 'error' }));
     }
-    
   };
 
   const handleDecrementScore = () => {
-    dispatch(updateComment(id, { score: score + 1 }));
+    try {
+      dispatch(updateComment(id, { score: score - 1 }));
+    } catch (err) {
+      dispatch(createNotification({ title: 'You must be logged in to like other posts', type: 'error' }));
+    }
   };
 
   const handleDeleteComment = () => {
@@ -131,13 +132,16 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
             <MinusIcon />
           </button>
         </ScoreCounter>
+
         <CommentHeader>
           <img src={user?.image} alt={user?.username} />
           <h3>{user?.username}</h3>
           {currentUser.username === user?.username ? <Tag>You</Tag> : null}
           <span>{formattedTimestamp}</span>
         </CommentHeader>
+
         <ButtonsWrapper>{getButtons()}</ButtonsWrapper>
+
         {isEditing ? (
           <>
             <StyledTextarea ref={textareaRef} value={textareaValue} onChange={handleOnChange}></StyledTextarea>
