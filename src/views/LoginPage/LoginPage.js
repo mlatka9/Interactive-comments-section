@@ -18,7 +18,7 @@ const LoginPage = () => {
   const currentUser = useSelector((state) => state.user);
 
   useEffect(() => {
-    if(currentUser) {
+    if (currentUser) {
       navigate('/');
     }
   }, [currentUser, navigate]);

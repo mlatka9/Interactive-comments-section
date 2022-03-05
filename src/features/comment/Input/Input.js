@@ -1,13 +1,13 @@
 import { useEffect, useState, useRef } from 'react';
 import { createNewNote } from 'features/comment/commentSlice';
 import { useDispatch } from 'react-redux';
-import { Wrapper, StyledForm } from './CommentInput.styles';
+import { Wrapper, StyledForm } from './Input.styles';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { CSSTransition } from 'react-transition-group';
 import StyledButton from 'components/Button/Button';
 
-const CommentInput = ({ isVisible = true, commentId = null, handleCloseInput = () => {} }) => {
+const Input = ({ isVisible = true, commentId = null, handleCloseInput = () => {} }) => {
   const [textareaValue, setTextareaValue] = useState();
   const textareaRef = useRef();
   const dispatch = useDispatch();
@@ -53,10 +53,10 @@ const CommentInput = ({ isVisible = true, commentId = null, handleCloseInput = (
   );
 };
 
-CommentInput.propTypes = {
+Input.propTypes = {
   isVisible: PropTypes.bool,
   commentId: PropTypes.string,
   handleCloseInput: PropTypes.func,
 };
 
-export default CommentInput;
+export default Input;

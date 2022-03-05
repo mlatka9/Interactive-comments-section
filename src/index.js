@@ -5,9 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import 'styles/fonts.css';
 import { Provider } from 'react-redux';
 import { store } from 'app/store';
-import {setInitialComments} from './features/comment/commentSlice';
-
-store.dispatch(setInitialComments());
 
 ReactDOM.render(
   <Provider store={store}>

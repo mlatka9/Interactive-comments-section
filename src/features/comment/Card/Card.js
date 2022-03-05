@@ -14,7 +14,7 @@ import {
   StyledTextarea,
   Tag,
   CardStyledButton,
-} from './CommentCard.styles';
+} from './Card.styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
 import DeleteModal from 'components/DeleteModal/DeleteModal';
@@ -22,12 +22,12 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import { updateComment, deleteComment } from 'features/comment/commentSlice';
 import PropTypes from 'prop-types';
-import { createNotification } from '../../features/notification/notificationSlice';
+import { createNotification } from '../../notification/notificationSlice';
 
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo('en-US');
 
-const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
+const Card = ({ commentId: id, toggleIsReplying = () => {} }) => {
   // console.log(`card  ${id} is render `)
   const dispatch = useDispatch();
   const comment = useSelector((state) => state.comment.find((comment) => comment.id === id));
@@ -161,9 +161,9 @@ const CommentCard = ({ commentId: id, toggleIsReplying = () => {} }) => {
   );
 };
 
-CommentCard.propTypes = {
+Card.propTypes = {
   commentId: PropTypes.string.isRequired,
   toggleIsReplying: PropTypes.func,
 };
 
-export default CommentCard;
+export default Card;

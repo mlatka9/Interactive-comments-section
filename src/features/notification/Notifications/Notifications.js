@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import Popup from 'components/Popup/Popup';
+import Popup from 'features/notification/Popup/Popup';
 
 const Notifications = () => {
   const notifications = useSelector((state) => state.notification);

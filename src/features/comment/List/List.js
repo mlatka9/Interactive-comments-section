@@ -1,12 +1,11 @@
 import React from 'react';
-import CommentInput from 'components/CommentInput/CommentInput';
-import CommentItem from 'components/CommentItem/CommentItem';
+import Item from 'features/comment/Item/Item';
 import { useSelector } from 'react-redux';
-import { Wrapper, TranstionWrapper } from './CommentsList.styles';
+import { Wrapper, TranstionWrapper } from './List.styles';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
-const CommentsList = ({ depthLevel = 0, parentCommentId = null }) => {
+const List = ({ depthLevel = 0, parentCommentId = null }) => {
   const commentsIds = useSelector((state) =>
     state.comment
       .filter((comment) => comment.parent === parentCommentId)
@@ -23,8 +22,8 @@ const CommentsList = ({ depthLevel = 0, parentCommentId = null }) => {
         {commentsIds.map((commentId) => (
           <CSSTransition key={commentId} timeout={400} classNames="comment">
             <TranstionWrapper>
-              <CommentItem commentId={commentId} />
-              <CommentsList depthLevel={depthLevel + 1} parentCommentId={commentId} />
+              <Item commentId={commentId} />
+              <List depthLevel={depthLevel + 1} parentCommentId={commentId} />
             </TranstionWrapper>
           </CSSTransition>
         ))}
@@ -33,9 +32,9 @@ const CommentsList = ({ depthLevel = 0, parentCommentId = null }) => {
   );
 };
 
-CommentsList.propTypes = {
+List.propTypes = {
   depthLevel: PropTypes.number,
   parentCommentId: PropTypes.string,
 };
 
-export default CommentsList;
+export default List;

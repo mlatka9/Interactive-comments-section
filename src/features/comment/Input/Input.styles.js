@@ -12,6 +12,7 @@ export const StyledForm = styled.form`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.white};
   gap: 25px;
+  width: 100%;
   &.comment-enter {
     opacity: 0;
     transform: translateY(-40px);
@@ -24,6 +25,9 @@ export const StyledForm = styled.form`
   &.comment-exit {
     opacity: 1;
     transform: translateY(0);
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   &.comment-exit-active {
     opacity: 0;

@@ -1,12 +1,12 @@
 import React from 'react';
-import CommentsList from './CommentsList';
+import List from './List';
 
 export default {
   title: 'Comments/List',
-  component: CommentsList,
+  component: List,
 };
 
-const Template = (args) => <CommentsList {...args} />;
+const Template = (args) => <List {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

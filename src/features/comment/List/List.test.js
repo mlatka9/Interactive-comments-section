@@ -1,12 +1,12 @@
 import { render, screen, fireEvent, waitForElementToBeRemoved, within, cleanup, rerender } from 'test-utils';
-import CommentsList from './CommentsList';
+import List from './List';
 
 it('render list component', async () => {
-  render(<CommentsList />);
+  render(<List />);
 });
 
 it('add new comment after fill form and press send button', () => {
-  render(<CommentsList />);
+  render(<List />);
   expect(screen.queryByText(/new testing comment/i)).not.toBeInTheDocument();
   const textareaElement = screen.getByPlaceholderText(/add a comment/i);
   fireEvent.change(textareaElement, { target: { value: 'new testing comment' } });
@@ -17,7 +17,7 @@ it('add new comment after fill form and press send button', () => {
 
 it('delete comment with replies', async () => {
   const commentItemId = '2';
-  render(<CommentsList />);
+  render(<List />);
   const commentItemElement = screen.getByTestId(`comment-item-${commentItemId}`);
   const deleteButton = within(commentItemElement).getByRole('button', { name: /delete/i });
   fireEvent.click(deleteButton);
@@ -28,7 +28,7 @@ it('delete comment with replies', async () => {
 
 it('delete comment without replies', async () => {
   const commentItemId = '5';
-  render(<CommentsList />);
+  render(<List />);
   const commentItemElement = screen.getByTestId(`comment-item-${commentItemId}`);
   const deleteButton = within(commentItemElement).getByRole('button', { name: /delete/i });
   fireEvent.click(deleteButton);

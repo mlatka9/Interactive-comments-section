@@ -1,19 +1,19 @@
 import { render, screen, fireEvent } from 'test-utils';
-import CommentInput from './CommentInput';
+import Input from './Input';
 
 it('render input component', async () => {
-  render(<CommentInput />);
+  render(<Input />);
 });
 
 it('change textarea content when typing', () => {
-  render(<CommentInput />);
+  render(<Input />);
   const textareaElement = screen.getByRole('textbox');
   fireEvent.change(textareaElement, { target: { value: 'New comment' } });
   screen.getAllByDisplayValue('New comment');
 });
 
 it('clear textarea content after clicking send button', () => {
-  render(<CommentInput />);
+  render(<Input />);
   const textareaElement = screen.getByRole('textbox');
   fireEvent.change(textareaElement, { target: { value: 'New comment' } });
   screen.getByDisplayValue('New comment');

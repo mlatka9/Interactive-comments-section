@@ -1,13 +1,13 @@
 import React from 'react';
 
-import CommentCard from './CommentCard';
+import Card from './Card';
 
 export default {
   title: 'Comments/Card',
-  component: CommentCard,
+  component: Card,
 };
 
-const Template = (args) => <CommentCard {...args} />;
+const Template = (args) => <Card {...args} />;
 
 export const Primary = Template.bind({});
 

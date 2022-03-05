@@ -1,13 +1,13 @@
 import React from 'react';
 
-import CommentInput from './CommentInput';
+import Input from './Input';
 
 export default {
   title: 'Comments/Input',
-  component: CommentInput,
+  component: Input,
 };
 
-const Template = (args) => <CommentInput {...args} />;
+const Template = (args) => <Input {...args} />;
 
 export const Primary = Template.bind({});
 

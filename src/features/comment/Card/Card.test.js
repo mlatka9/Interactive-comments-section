@@ -1,13 +1,13 @@
 import { render, screen, fireEvent } from 'test-utils';
-import CommentCard from './CommentCard';
+import Card from './Card';
 
 it('render card component', async () => {
-  render(<CommentCard commentId="1" />);
+  render(<Card commentId="1" />);
 });
 
 it('increment score counter after clicking plus button', () => {
   const commentId = '1';
-  render(<CommentCard commentId={commentId} />);
+  render(<Card commentId={commentId} />);
   const incrementButton = screen.getByRole('button', { name: /icon-plus/i });
   const spanElement = screen.getByTestId(`score-counter-${commentId}`);
   const scoreValue = Number(spanElement.textContent);
@@ -17,7 +17,7 @@ it('increment score counter after clicking plus button', () => {
 
 it('decrement score counter after clicking minus button', () => {
   const commentId = '1';
-  render(<CommentCard commentId={commentId} />);
+  render(<Card commentId={commentId} />);
 
   const decrementButton = screen.getByRole('button', { name: /icon-minus/i });
   const spanElement = screen.getByTestId(`score-counter-${commentId}`);

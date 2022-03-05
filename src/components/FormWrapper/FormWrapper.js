@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import StyledTitle from 'components/StyledTitle/StyledTitle';
+import StyledTitle from 'components/Title/Title';
 
 const ErrorMessage = styled.p`
   color: red;

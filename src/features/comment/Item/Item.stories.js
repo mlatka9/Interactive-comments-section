@@ -1,13 +1,13 @@
 import React from 'react';
 
-import CommentItem from './CommentItem';
+import Item from './Item';
 
 export default {
   title: 'Comments/Item',
-  component: CommentItem,
+  component: Item,
 };
 
-const Template = (args) => <CommentItem {...args} />;
+const Template = (args) => <Item {...args} />;
 
 export const Primary = Template.bind({});
 

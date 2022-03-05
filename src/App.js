@@ -6,7 +6,7 @@ import LoginPage from 'views/LoginPage/LoginPage';
 import SignUpPage from 'views/SignUpPage/SignUpPage';
 import CommentsPage from 'views/CommentsPage/CommentsPage';
 import Navigation from 'components/Navigation/Navigation';
-import Notifications from 'components/Notifications/Notifications';
+import Notifications from 'features/notification/Notifications/Notifications';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -20,8 +20,7 @@ function App() {
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
-       
-          <Wrapper>
+        <Wrapper>
           <Navigation />
           <Routes>
             <Route path="/" element={<CommentsPage />} />
@@ -29,7 +28,7 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
           </Routes>
           <Notifications />
-          </Wrapper>
+        </Wrapper>
       </ThemeProvider>
     </BrowserRouter>
   );
