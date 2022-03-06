@@ -33,6 +33,9 @@ export const Wrapper = styled.div`
   align-items: center;
   z-index: 100;
   animation: ${SlideIn} 3s ease-in-out;
+  @media (max-width: 600px) {
+    padding: 12px 15px;
+  }
   svg {
     width: 35px;
     height: 35px;
@@ -43,8 +46,10 @@ export const Wrapper = styled.div`
     font-weight: normal;
     font-size: 18px;
     max-width: 200px;
+    @media (max-width: 600px) {
+      font-size: 16px;
+    }
   }
-
   path {
     fill: ${({ theme, type }) => {
       if (type === 'error') return theme.colors.softRed;

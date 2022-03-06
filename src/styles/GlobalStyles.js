@@ -4,8 +4,10 @@ const GlobalStyles = createGlobalStyle`
     *,*::after, *::before {
         box-sizing: border-box;
     }
-    html{
+
+    html, body {
         overflow-x: hidden;
+        min-height: 100vh;
     }
 
     body{

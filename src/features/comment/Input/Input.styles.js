@@ -25,9 +25,7 @@ export const StyledForm = styled.form`
   &.comment-exit {
     opacity: 1;
     transform: translateY(0);
-    position: absolute;
     top: 0;
-    left: 0;
   }
   &.comment-exit-active {
     opacity: 0;

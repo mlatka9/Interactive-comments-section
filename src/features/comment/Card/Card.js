@@ -1,7 +1,6 @@
 import { ReactComponent as ReplyIcon } from 'assets/images/icons/icon-reply.svg';
 import { ReactComponent as DeleteIcon } from 'assets/images/icons/icon-delete.svg';
-import { ReactComponent as PlusIcon } from 'assets/images/icons/icon-plus.svg';
-import { ReactComponent as MinusIcon } from 'assets/images/icons/icon-minus.svg';
+
 import {
   CommentContent,
   CommentHeader,
@@ -9,7 +8,6 @@ import {
   ButtonsWrapper,
   Mention,
   ReplyButton,
-  ScoreCounter,
   Wrapper,
   StyledTextarea,
   Tag,
@@ -17,22 +15,23 @@ import {
 } from './Card.styles';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
-import DeleteModal from 'components/DeleteModal/DeleteModal';
+import DeleteModal from 'features/comment/DeleteModal/DeleteModal';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 import { updateComment, deleteComment } from 'features/comment/commentSlice';
 import PropTypes from 'prop-types';
 import { createNotification } from '../../notification/notificationSlice';
+import ScoreCounter from '../ScoreCounter/ScoreCounter';
 
 TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo('en-US');
 
 const Card = ({ commentId: id, toggleIsReplying = () => {} }) => {
-  // console.log(`card  ${id} is render `)
+  // console.log("render card")
   const dispatch = useDispatch();
   const comment = useSelector((state) => state.comment.find((comment) => comment.id === id));
 
-  const { content, createdAt, score, parent, user } = comment || {};
+  const { content, createdAt, parent, user } = comment || {};
 
   const parentCommentUsername = useSelector(
     (state) => state.comment.find((comment) => comment.id === parent)?.user.username
@@ -67,22 +66,6 @@ const Card = ({ commentId: id, toggleIsReplying = () => {} }) => {
     if (textareaValue !== content) {
       dispatch(updateComment(id, { content: textareaValue }));
       dispatch(createNotification({ title: 'Commned updated' }));
-    }
-  };
-
-  const handleIncrementScore = async () => {
-    try {
-      await dispatch(updateComment(id, { score: score + 1 }));
-    } catch (err) {
-      dispatch(createNotification({ title: 'You must be logged in to like other posts', type: 'error' }));
-    }
-  };
-
-  const handleDecrementScore = () => {
-    try {
-      dispatch(updateComment(id, { score: score - 1 }));
-    } catch (err) {
-      dispatch(createNotification({ title: 'You must be logged in to like other posts', type: 'error' }));
     }
   };
 
@@ -123,16 +106,7 @@ const Card = ({ commentId: id, toggleIsReplying = () => {} }) => {
   return (
     <>
       <Wrapper>
-        <ScoreCounter>
-          <button onClick={handleIncrementScore}>
-            <PlusIcon />
-          </button>
-          <span data-testid={`score-counter-${id}`}>{score}</span>
-          <button onClick={handleDecrementScore}>
-            <MinusIcon />
-          </button>
-        </ScoreCounter>
-
+        <ScoreCounter commentId={id} />
         <CommentHeader>
           <img src={user?.image} alt={user?.username} />
           <h3>{user?.username}</h3>

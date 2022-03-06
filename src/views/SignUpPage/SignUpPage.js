@@ -24,7 +24,6 @@ const SignUpPage = () => {
   }, [currentUser, navigate]);
 
   const handleSubmit = async (e) => {
-    console.log('handleSubmit');
     e.preventDefault();
 
     try {

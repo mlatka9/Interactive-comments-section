@@ -1,7 +1,7 @@
 import React from 'react';
 import Item from 'features/comment/Item/Item';
 import { useSelector } from 'react-redux';
-import { Wrapper, TranstionWrapper } from './List.styles';
+import { Wrapper, TranstionWrapper, Fallback } from './List.styles';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -12,12 +12,12 @@ const List = ({ depthLevel = 0, parentCommentId = null }) => {
       .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
       .map((comment) => comment.id)
   );
-
+  
+  if (!commentsIds.length && depthLevel === 0) return <Fallback>No comments to show...</Fallback>;
   if (!commentsIds.length) return null;
 
   return (
     <Wrapper depthLevel={depthLevel}>
-      {/* {depthLevel === 0 ?  : null} */}
       <TransitionGroup>
         {commentsIds.map((commentId) => (
           <CSSTransition key={commentId} timeout={400} classNames="comment">

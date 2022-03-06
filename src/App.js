@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme';
 import GlobalStyles from './styles/GlobalStyles';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import LoginPage from 'views/LoginPage/LoginPage';
 import SignUpPage from 'views/SignUpPage/SignUpPage';
 import CommentsPage from 'views/CommentsPage/CommentsPage';
@@ -12,25 +12,23 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   max-width: 750px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 20px 30px;
 `;
 
 function App() {
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <Wrapper>
-          <Navigation />
-          <Routes>
-            <Route path="/" element={<CommentsPage />} />
-            <Route path="/signUp" element={<SignUpPage />} />
-            <Route path="/login" element={<LoginPage />} />
-          </Routes>
-          <Notifications />
-        </Wrapper>
-      </ThemeProvider>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Wrapper>
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<CommentsPage />} />
+          <Route path="/signUp" element={<SignUpPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+        <Notifications />
+      </Wrapper>
+    </ThemeProvider>
   );
 }
 

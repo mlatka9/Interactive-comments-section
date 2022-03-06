@@ -38,6 +38,7 @@ export const EmphasisedStyledButton = styled.button`
   background-color: ${({ theme }) => theme.colors.white};
   margin-left: 30px;
   text-decoration: none;
+  display: inline-block;
   cursor: pointer;
 `;
 

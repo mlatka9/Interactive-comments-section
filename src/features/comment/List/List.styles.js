@@ -48,3 +48,12 @@ export const TranstionWrapper = styled.div`
     transition: opacity 300ms ease-in, transform 300ms ease-in;
   }
 `;
+
+export const Fallback = styled.div`
+  display: flex;
+  justify-content: center;
+  color: ${({ theme }) => theme.colors.grayishBlue};
+  margin-top: 100px;
+  font-size: 20px;
+  letter-spacing: 1.3px;
+`;

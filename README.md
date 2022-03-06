@@ -1,6 +1,6 @@
 //todo 
-- login and register page layout
-- redirecty po zalogowaniu / zareestrowaniu
+- login and register page layout +
+- redirecty po zalogowaniu / zareestrowaniu +
 - obsługa wyświetlania wiadomości z backaenda (nowy slice) +
 - refractor backendu
 - przepisanie testów na frocie
@@ -9,6 +9,8 @@
 - naprawa story booka
 - dodanie poprawnej osbłigi błędów z validatora +
 - dodanie validacji na froncie +-
+- prop types
+- loading errror
 
 # Frontend Mentor - Interactive comments section solution
 

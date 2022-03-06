@@ -1,22 +1,5 @@
-import styled from 'styled-components';
-import StyledTitle from 'components/Title/Title';
-
-const ErrorMessage = styled.p`
-  color: red;
-  position: absolute;
-  bottom: 25px;
-`;
-
-const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.colors.white};
-  padding: 40px 40px 80px;
-  border-radius: 10px;
-  position: relative;
-`;
-
-const FormStyledTitle = styled(StyledTitle)`
-  margin-bottom: 40px;
-`;
+import { ErrorMessage, FormStyledTitle, Wrapper } from './FormWrapper.styles';
+import PropTypes from 'prop-types';
 
 const FormWrapper = ({ children, title, error }) => {
   return (
@@ -27,6 +10,13 @@ const FormWrapper = ({ children, title, error }) => {
       <ErrorMessage>{error?.message}</ErrorMessage>
     </Wrapper>
   );
+};
+
+FormWrapper.propTypes = {
+  title: PropTypes.string,
+  error: PropTypes.shape({
+    message: PropTypes.string,
+  }),
 };
 
 export default FormWrapper;

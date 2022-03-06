@@ -10,6 +10,7 @@ const Navigation = () => {
   const handleLogOut = () => {
     dispatch(logout());
   };
+
   return (
     <StyledNav>
       <StyledLink to="/">Comments </StyledLink>

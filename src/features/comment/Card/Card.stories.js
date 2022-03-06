@@ -13,7 +13,5 @@ export const Primary = Template.bind({});
 
 Primary.args = {
   commentId: '1',
-  toggleIsReplying: () => {
-    console.log('toggle is replying');
-  },
+  toggleIsReplying: () => {},
 };
