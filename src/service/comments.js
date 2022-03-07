@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { getFromLocalStorage } from '../helpers/index';
-const baseUrl = 'http://localhost:5000/api/v1/comments';
+
+const baseURL = `${process.env.REACT_APP_API_BASE}/api/v1/comments`;
 
 const extractToken = () => {
   return getFromLocalStorage('interactiveCommentsUser')?.token || null;
 };
 
 const getAllComments = async () => {
-  const response = await axios.get(baseUrl);
+  const response = await axios.get(baseURL);
   return response.data;
 };
 
@@ -18,7 +19,7 @@ const addComment = async (comment) => {
       authorization: `Bearer ${token}`,
     },
   };
-  const response = await axios.post(baseUrl, comment, options);
+  const response = await axios.post(baseURL, comment, options);
   return response.data;
 };
 
@@ -29,7 +30,7 @@ const updateComment = async (id, body) => {
       authorization: `Bearer ${token}`,
     },
   };
-  const response = await axios.patch(`${baseUrl}/${id}`, body, options);
+  const response = await axios.patch(`${baseURL}/${id}`, body, options);
   return response.data;
 };
 
@@ -40,7 +41,7 @@ const deleteComment = async (id) => {
       authorization: `Bearer ${token}`,
     },
   };
-  const response = await axios.delete(`${baseUrl}/${id}`, options);
+  const response = await axios.delete(`${baseURL}/${id}`, options);
   return response.data;
 };
 
