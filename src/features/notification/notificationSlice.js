@@ -6,7 +6,8 @@ export const createNotification = (notification, time = 3000) => {
     const generatedId = nanoid();
     notification.id = generatedId;
     dispatch(addNotification(notification));
-    setTimeout(() => dispatch(removeNotification(generatedId)), time);
+    await new Promise((resolve) => setTimeout(resolve, time));
+    dispatch(removeNotification(generatedId));
   };
 };
 

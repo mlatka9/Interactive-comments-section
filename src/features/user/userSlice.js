@@ -6,7 +6,6 @@ const user = JSON.parse(localStorage.getItem('interactiveCommentsUser'));
 export const login = (username, login) => {
   return async (dispatch) => {
     const { user, token } = await authService.login(username, login);
-    console.log("TOKEN22222", token)
     const currentUser = {
       token,
       username: user.username,

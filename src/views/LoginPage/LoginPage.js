@@ -28,10 +28,10 @@ const LoginPage = () => {
 
     try {
       await dispatch(login(loginValue, passwordValue));
-      dispatch(createNotification({ title: 'logged in successfuly' }));
+      await dispatch(createNotification({ title: 'logged in successfuly' }));
       navigate('/');
     } catch (err) {
-      setError(err.response.data);
+      setError(err.response?.data);
     }
   };
 

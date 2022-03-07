@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setInitialComments } from 'features/comment/commentSlice';
 import { useEffect } from 'react';
 
-
 const CommentsPage = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();

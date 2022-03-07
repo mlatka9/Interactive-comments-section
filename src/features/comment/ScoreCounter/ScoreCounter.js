@@ -8,7 +8,6 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const ScoreCounter = ({ commentId }) => {
-  // console.log("render counter")
   const dispatch = useDispatch();
   const { score } = useSelector((state) => state.comment.find((comment) => comment.id === commentId)) || 0;
 

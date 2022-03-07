@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { v4 as uuidv4 } from 'uuid';
 import CommentsService from '../../service/comments';
 import { createNotification } from 'features/notification/notificationSlice';
 

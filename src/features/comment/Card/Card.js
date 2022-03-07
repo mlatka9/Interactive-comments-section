@@ -27,7 +27,6 @@ TimeAgo.addDefaultLocale(en);
 const timeAgo = new TimeAgo('en-US');
 
 const Card = ({ commentId: id, toggleIsReplying = () => {} }) => {
-  // console.log("render card")
   const dispatch = useDispatch();
   const comment = useSelector((state) => state.comment.find((comment) => comment.id === id));
 
