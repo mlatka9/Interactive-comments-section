@@ -19,6 +19,8 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 
 ## Overview
 
+The backend application, which takes care of serving data and saving it to the database, can be found at this [link](https://github.com/mlatka9/Interactive-comments-section-backend)
+
 ### The challenge
 
 Users should be able to:
@@ -27,8 +29,7 @@ Users should be able to:
 - See hover states for all interactive elements on the page
 - Create, Read, Update, and Delete comments and replies
 - Upvote and downvote comments
-- **Bonus**: If you're building a purely front-end project, use `localStorage` to save the current state in the browser that persists when the browser is refreshed.
-- **Bonus**: Instead of using the `createdAt` strings from the `data.json` file, try using timestamps and dynamically track the time since the comment or reply was posted.
+- **data is stored on the server so that it is not lost when the browser is refreshed**
 
 ### Screenshot
 
@@ -38,6 +39,10 @@ Users should be able to:
 
 - Solution URL: [github.com](https://github.com/mlatka9/Interactive-comments-section)
 - Live Site URL: [netlify.com](https://blissful-pasteur-16c55e.netlify.app/)
+
+## How to run an application locally
+
+First make sure that the backend application has been downloaded and started correctly. You can then download the fronted application using `git clone` command. Then you need to go to the root directory. In terminal type `npm install` to get dependencies and `npm start` to run application.
 
 ## My process
 
