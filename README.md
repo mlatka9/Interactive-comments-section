@@ -24,7 +24,7 @@ Users should be able to:
 ### Links
 
 - Solution URL: [github.com](https://github.com/mlatka9/Interactive-comments-section)
-- Live Site URL: [netlify.com](https://blissful-pasteur-16c55e.netlify.app/)
+- Live Site URL: [netlify.com](https://unruffled-kare-924757.netlify.app)
 
 ## How to run an application locally
 
